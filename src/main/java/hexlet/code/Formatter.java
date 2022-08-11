@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -7,45 +8,55 @@ public class Formatter {
 
     public static String format(List<Diff> diffs, Format format) {
         return switch (format) {
-            case stylish -> formatStylish(diffs);
+            case plain -> null;
+            case json -> null;
+            default -> formatStylish(diffs);
         };
     }
 
+    /*
+    AAA:
+    bbb:
+    ccc:
+    AAA:
+     */
+
     public static String formatStylish(List<Diff> diffs) {
-        diffs.sort(Comparator.comparing(Diff::getKey));
+        List<Diff> diffsClone = new ArrayList<>(diffs);
+        diffsClone.sort(Comparator.comparing(Diff::key));
         StringBuilder result = new StringBuilder();
         result.append("{\n");
-        for (Diff x : diffs) {
+        for (Diff x : diffsClone) {
             result.append("  ");
-            switch (x.getStatus()) {
-                case added -> result.
+            switch (x.status()) {
+                case ADDED -> result.
                         append("+ ").
-                        append(x.getKey()).
+                        append(x.key()).
                         append(": ").
-                        append(x.getNewValue()).
+                        append(x.newValue()).
                         append("\n");
-                case deleted -> result.
+                case DELETED -> result.
                         append("- ").
-                        append(x.getKey()).
+                        append(x.key()).
                         append(": ").
-                        append(x.getOldValue()).
+                        append(x.oldValue()).
                         append("\n");
-                case changed -> result.
+                case CHANGED -> result.
                         append("- ").
-                        append(x.getKey()).
+                        append(x.key()).
                         append(": ").
-                        append(x.getOldValue()).
+                        append(x.oldValue()).
                         append("\n").
                         append("  + ").
-                        append(x.getKey()).
+                        append(x.key()).
                         append(": ").
-                        append(x.getNewValue()).
+                        append(x.newValue()).
                         append("\n");
-                case unchanged -> result.
+                case UNCHANGED -> result.
                         append("  ").
-                        append(x.getKey()).
+                        append(x.key()).
                         append(": ").
-                        append(x.getOldValue()).
+                        append(x.oldValue()).
                         append("\n");
             }
         }

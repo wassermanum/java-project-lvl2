@@ -24,7 +24,8 @@ public class App implements Callable<Integer> {
 
     public Integer call() throws Exception {
         System.out.println("Hello world!");
-        Differ.generate(filepath1, filepath2, Format.stylish);
+        String result = Differ.generate(filepath1, filepath2, Format.stylish);
+        System.out.println(result);
         return 0;
     }
 
