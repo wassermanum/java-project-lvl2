@@ -7,12 +7,16 @@ import java.util.*;
 public class Differ {
 
     public static String generate(File filepath1, File filepath2, Format format) throws IOException {
-        List<Diff> diffs = calculate(Parser.parse(filepath1), Parser.parse(filepath2));
+        List<Diff> diffs = calculateDiffs(Parser.parse(filepath1), Parser.parse(filepath2));
         System.out.println(Formatter.format(diffs, format));
         return Formatter.format(diffs, format);
     }
 
-    public static List<Diff> calculate (Map<String, Object> map1, Map<String, Object> map2) {
+    public static String generate(File filepath1, File filepath2) throws IOException {
+        return Differ.generate(filepath1, filepath2, Format.stylish);
+    }
+
+    public static List<Diff> calculateDiffs(Map<String, Object> map1, Map<String, Object> map2) {
         List<Diff> diffs = new ArrayList<>();
         map2.forEach((key, value) -> {
             if (!map1.containsKey(key)) {
