@@ -23,4 +23,12 @@ class ParserTest {
         File file = new File("111");
         assertThrows(IOException.class, () -> Parser.parse(file));
     }
+
+    @Test
+    public void parseTest3() throws IOException {
+        File file = new File("src/test/resources/file2.yml");
+        Map<String, Object> parsedMap = Parser.parse(file);
+//        assertEquals("Gary", parsedMap.get("man"));
+        assertTrue(parsedMap.containsKey("women"));
+    }
 }
