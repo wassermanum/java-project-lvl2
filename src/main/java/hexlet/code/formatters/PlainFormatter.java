@@ -52,7 +52,8 @@ public class PlainFormatter {
 
     public static boolean isComplex(Object obj) {
         if (!Objects.isNull(obj)) {
-            return (!ClassUtils.isPrimitiveOrWrapper(obj.getClass()) && !isString(obj));
+            return (!ClassUtils.isPrimitiveOrWrapper(obj.getClass()) && !isString(obj))
+                    || obj.getClass().isArray();
         }
         return false;
     }
