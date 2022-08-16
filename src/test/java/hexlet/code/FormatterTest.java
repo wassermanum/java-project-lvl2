@@ -49,7 +49,7 @@ class FormatterTest {
                 Property 'gender' was added with value: 'male'
                 Property 'id' was removed
                 Property 'mmr' was updated. From '1000' to '9000'
-                Property 'xxx' was updated. From null to 0git 
+                Property 'xxx' was updated. From null to 0
                 """;
         assertEquals(expected, actual);
     }
