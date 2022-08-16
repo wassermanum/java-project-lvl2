@@ -1,6 +1,7 @@
 package hexlet.code.formatters;
 
 import hexlet.code.Diff;
+import org.apache.commons.lang3.ClassUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,7 +20,8 @@ public class PlainFormatter {
             switch (x.status()) {
                 case ADDED -> result.append(
                         (FIRST_LINE_PART + "added with value: "
-                                + (isString(x.newValue()) ? "'%s'\n" : "%s\n")).
+//                                + (isString(x.newValue()) ? "'%s'\n" : "%s\n")).
+                                + (valueCheck(x.newValue()) + "\n")).
                                 formatted(x.key(), x.newValue())
                 );
                 case DELETED -> result.append(
@@ -27,8 +29,10 @@ public class PlainFormatter {
                 );
                 case CHANGED -> result.append(
                         (FIRST_LINE_PART + "updated. From "
-                                + (isString(x.oldValue()) ? "'%s' to " : "%s to ")
-                                + (isString(x.newValue()) ? "'%s'\n" : "%s\n")
+//                                + (isString(x.oldValue()) ? "'%s' to " : "%s to ")
+//                                + (isString(x.newValue()) ? "'%s'\n" : "%s\n")
+                                + (valueCheck(x.oldValue()) + " to ")
+                                + (valueCheck(x.newValue()) + "\n")
                         ).
                         formatted(x.key(), x.oldValue(), x.newValue())
                 );
@@ -44,5 +48,21 @@ public class PlainFormatter {
             return false;
         }
         return obj.getClass().equals(String.class);
+    }
+
+    public static boolean isComplex(Object obj) {
+        if (!Objects.isNull(obj)) {
+            return (!ClassUtils.isPrimitiveOrWrapper(obj.getClass()) && !isString(obj));
+        }
+        return false;
+    }
+
+    public static String valueCheck(Object obj) {
+        if (isString(obj)) {
+            return "'%s'";
+        } else if (isComplex(obj)) {
+            return "[complex value]";
+        }
+        return "%s";
     }
 }

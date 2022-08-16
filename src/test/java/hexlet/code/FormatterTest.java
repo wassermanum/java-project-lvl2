@@ -44,12 +44,15 @@ class FormatterTest {
     public void formatPlainTest() throws JsonProcessingException {
         List<Diff> diffsClone = new ArrayList<>(diffs);
         diffsClone.add(new Diff("xxx", null, 0, Status.CHANGED));
+        int[] ints = {0, 0};
+        diffsClone.add(new Diff("yyy", null, ints, Status.CHANGED));
         String actual = Formatter.format(diffsClone, Format.plain);
         String expected = """
                 Property 'gender' was added with value: 'male'
                 Property 'id' was removed
                 Property 'mmr' was updated. From '1000' to '9000'
-                Property 'xxx' was updated. From null to 0""";
+                Property 'xxx' was updated. From null to 0
+                Property 'yyy' was updated. From null to [complex value]""";
         assertEquals(expected, actual);
     }
 
