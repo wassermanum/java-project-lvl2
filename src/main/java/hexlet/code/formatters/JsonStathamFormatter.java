@@ -4,12 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import hexlet.code.Diff;
-import hexlet.code.Parser;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class JsonStathamFormatter {
     public static String format(List<Diff> diffs) throws JsonProcessingException {

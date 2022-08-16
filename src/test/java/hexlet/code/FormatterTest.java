@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FormatterTest {
 
@@ -42,13 +43,13 @@ class FormatterTest {
     @Test
     public void formatPlainTest() throws JsonProcessingException {
         List<Diff> diffsClone = new ArrayList<>(diffs);
-        diffsClone.add(new Diff("xxx", null, 200, Status.CHANGED));
+        diffsClone.add(new Diff("xxx", null, 0, Status.CHANGED));
         String actual = Formatter.format(diffsClone, Format.plain);
         String expected = """
                 Property 'gender' was added with value: 'male'
                 Property 'id' was removed
                 Property 'mmr' was updated. From '1000' to '9000'
-                Property 'xxx' was updated. From null to 200
+                Property 'xxx' was updated. From null to 0git 
                 """;
         assertEquals(expected, actual);
     }
