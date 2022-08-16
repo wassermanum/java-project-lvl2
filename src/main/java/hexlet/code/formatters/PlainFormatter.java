@@ -36,7 +36,7 @@ public class PlainFormatter {
                 }
             }
         }
-        return result.toString();
+        return result.toString().trim();
     }
 
     public static boolean isString(Object obj) {
