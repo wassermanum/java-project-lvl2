@@ -9,7 +9,7 @@ import java.util.List;
 public class StylishFormatter {
     public static String format(List<Diff> diffs) {
         List<Diff> diffsClone = new ArrayList<>(diffs);
-        diffsClone.sort(Comparator.comparing(Diff::key));
+        diffsClone.sort(Comparator.comparing((Diff a) -> a.key().toLowerCase()));
         StringBuilder result = new StringBuilder();
         result.append("{\n");
         for (Diff x : diffsClone) {
@@ -44,6 +44,8 @@ public class StylishFormatter {
                         append(": ").
                         append(x.oldValue()).
                         append("\n");
+                default -> {
+                }
             }
         }
 

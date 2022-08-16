@@ -18,28 +18,31 @@ public class PlainFormatter {
         for (Diff x : diffsClone) {
             switch (x.status()) {
                 case ADDED -> result.append(
-                        (FIRST_LINE_PART + "added with value: " +
-                                (objectCheck(x.newValue()) ? "'%s'\n" : "%s\n")).
+                        (FIRST_LINE_PART + "added with value: "
+                                + (isString(x.newValue()) ? "'%s'\n" : "%s\n")).
                                 formatted(x.key(), x.newValue())
                 );
                 case DELETED -> result.append(
                         (FIRST_LINE_PART + "removed\n").formatted(x.key())
                 );
                 case CHANGED -> result.append(
-                        (FIRST_LINE_PART + "updated. From " + (
-                                objectCheck(x.oldValue()) ? "'%s' to " : "%s to ") +
-                                (objectCheck(x.newValue()) ? "'%s'\n" : "%s\n")
+                        (FIRST_LINE_PART + "updated. From "
+                                + (isString(x.oldValue()) ? "'%s' to " : "%s to ")
+                                + (isString(x.newValue()) ? "'%s'\n" : "%s\n")
                         ).
-                        formatted(x.key(), x.oldValue(), x.newValue()
-                        )
+                        formatted(x.key(), x.oldValue(), x.newValue())
                 );
+                default -> {
+                }
             }
         }
         return result.toString();
     }
 
-    public static boolean objectCheck(Object obj) {
-        if (Objects.isNull(obj)) return false;
+    public static boolean isString(Object obj) {
+        if (Objects.isNull(obj)) {
+            return false;
+        }
         return obj.getClass().equals(String.class);
     }
 }

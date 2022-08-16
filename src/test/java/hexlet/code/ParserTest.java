@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
     @Test
@@ -28,7 +30,6 @@ class ParserTest {
     public void parseTest3() throws IOException {
         File file = new File("src/test/resources/file2.yml");
         Map<String, Object> parsedMap = Parser.parse(file);
-//        assertEquals("Gary", parsedMap.get("man"));
         assertTrue(parsedMap.containsKey("women"));
     }
 }
