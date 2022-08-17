@@ -11,13 +11,11 @@ public class Differ {
 
     public static String generate(File filepath1, File filepath2, Format format) throws IOException {
         List<Diff> diffs = calculateDiffs(Parser.parse(filepath1), Parser.parse(filepath2));
-//        System.out.println(Formatter.format(diffs, format));
         return Formatter.format(diffs, format);
     }
 
     public static String generate(File filepath1, File filepath2, String format) throws IOException {
         List<Diff> diffs = calculateDiffs(Parser.parse(filepath1), Parser.parse(filepath2));
-//        System.out.println(Formatter.format(diffs, format));
         return Formatter.format(diffs, Format.valueOf(format));
     }
 

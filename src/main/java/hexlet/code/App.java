@@ -23,7 +23,6 @@ public final class App implements Callable<Integer> {
     private Format format;
 
     public Integer call() throws Exception {
-        System.out.println("Hello world!");
         String result = Differ.generate(filepath1, filepath2, format);
         System.out.println(result);
         return 0;
