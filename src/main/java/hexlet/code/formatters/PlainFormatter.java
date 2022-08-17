@@ -59,13 +59,13 @@ public class PlainFormatter {
 
     public static String valueCheck(Object obj) {
         if (isString(obj)) {
-            System.out.println(obj + " is string, its class is " + obj.getClass());
+            System.out.println(obj + " is string, its class is " + (obj != null ? obj.getClass() : "null"));
             return "'%s'";
         } else if (isComplex(obj)) {
-            System.out.println(obj + " is complex value, its class is " + obj.getClass());
+            System.out.println(obj + " is complex value, its class is " + (obj != null ? obj.getClass() : "null"));
             return "[complex value]";
         }
-        System.out.println(obj + " is primitive or wrapper, its class is " + obj.getClass());
+        System.out.println(obj + " is primitive or wrapper, its class is " + (obj != null ? obj.getClass() : "null"));
         return "%s";
     }
 }
