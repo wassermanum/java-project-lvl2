@@ -3,8 +3,6 @@ package hexlet.code.formatters;
 import hexlet.code.Diff;
 import org.apache.commons.lang3.ClassUtils;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,9 +11,9 @@ public class PlainFormatter {
     private static final String FIRST_LINE_PART = "Property '%s' was ";
 
     public static String format(List<Diff> diffs) {
+
         StringBuilder result = new StringBuilder();
-//        List<Diff> diffsClone = new ArrayList<>(diffs);
-//        diffsClone.sort(Comparator.comparing((Diff a) -> a.key().toLowerCase()));
+
         for (Diff x : diffs) {
             switch (x.status()) {
                 case ADDED -> result.append(

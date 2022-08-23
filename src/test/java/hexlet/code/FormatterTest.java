@@ -19,11 +19,11 @@ class FormatterTest {
     @BeforeAll
     public static void init() {
         diffs = List.of(
-                new Diff("id", "123", null, Status.DELETED),
                 new Diff("gender", null, "male", Status.ADDED),
-                new Diff("name", "OLEG", "OLEG", Status.UNCHANGED),
-                new Diff("mmr", "1000", "9000", Status.CHANGED)
-                );
+                new Diff("id", "123", null, Status.DELETED),
+                new Diff("mmr", "1000", "9000", Status.CHANGED),
+                new Diff("name", "OLEG", "OLEG", Status.UNCHANGED)
+        );
     }
 
     @Test

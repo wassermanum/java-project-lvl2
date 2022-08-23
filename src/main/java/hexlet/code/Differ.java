@@ -5,8 +5,9 @@ import hexlet.code.readers.Reader;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.*;
+import java.util.List;
+
+import static hexlet.code.DifferUtils.calculateDiffs;
 
 public class Differ {
 
@@ -44,25 +45,4 @@ public class Differ {
         return Differ.generate(filepath1, filepath2, Format.stylish);
     }
 
-    public static List<Diff> calculateDiffs(Map<String, Object> map1, Map<String, Object> map2) {
-        List<Diff> diffs = new ArrayList<>();
-        map2.forEach((key, value) -> {
-            if (!map1.containsKey(key)) {
-                diffs.add(new Diff(key, null, value, Status.ADDED));
-            } else {
-                if (Objects.equals(map1.get(key), value)) {
-                    diffs.add(new Diff(key, value, value, Status.UNCHANGED));
-                } else {
-                    diffs.add(new Diff(key, map1.get(key), value, Status.CHANGED));
-                }
-            }
-        });
-        map1.forEach((key, value) -> {
-            if (!map2.containsKey(key)) {
-                diffs.add(new Diff(key, value, null, Status.DELETED));
-            }
-        });
-        diffs.sort(Comparator.comparing((Diff a) -> a.key().toLowerCase()));
-        return diffs;
-    }
 }

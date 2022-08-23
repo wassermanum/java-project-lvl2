@@ -25,7 +25,7 @@ public class DifferTest {
 
         Reader reader = new FileReader();
 
-        List<Diff> result = Differ.calculateDiffs(
+        List<Diff> result = DifferUtils.calculateDiffs(
                 Parser.parse(reader.read(new File("src/test/resources/file1.json"))),
                 Parser.parse(reader.read(new File("src/test/resources/file2.json")))
         );
