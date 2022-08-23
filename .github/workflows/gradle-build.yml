@@ -22,7 +22,9 @@ jobs:
       - name: Codeclimate
         uses: paambaati/codeclimate-action@v3.0.0
         env:
-          CC_TEST_REPORTER_ID: 39ab9cbce832ef7c7681ffd633528aab2ea3ab518f8b973dbf649daf0a5e7c23
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          JACOCO_SOURCE_PATH: ${{github.workspace}}/src/main/java
         with:
           debug: true
+          coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
         if: ${{ github.event_name == 'push' }}
