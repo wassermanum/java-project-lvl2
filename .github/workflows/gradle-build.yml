@@ -19,3 +19,10 @@ jobs:
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: build
+      -name: Codeclimate
+        uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: 39ab9cbce832ef7c7681ffd633528aab2ea3ab518f8b973dbf649daf0a5e7c23
+      with:
+        debug: true
+      if: ${{ github.event_name == 'push' }}
