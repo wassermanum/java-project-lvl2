@@ -14,9 +14,9 @@ public class PlainFormatter {
 
     public static String format(List<Diff> diffs) {
         StringBuilder result = new StringBuilder();
-        List<Diff> diffsClone = new ArrayList<>(diffs);
-        diffsClone.sort(Comparator.comparing((Diff a) -> a.key().toLowerCase()));
-        for (Diff x : diffsClone) {
+//        List<Diff> diffsClone = new ArrayList<>(diffs);
+//        diffsClone.sort(Comparator.comparing((Diff a) -> a.key().toLowerCase()));
+        for (Diff x : diffs) {
             switch (x.status()) {
                 case ADDED -> result.append(
                         (FIRST_LINE_PART + "added with value: "

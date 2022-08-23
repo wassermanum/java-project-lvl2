@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.readers.FileReader;
+import hexlet.code.readers.Reader;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -21,9 +23,11 @@ public class DifferTest {
                 new Diff("age", null, "16", Status.ADDED)
         );
 
+        Reader reader = new FileReader();
+
         List<Diff> result = Differ.calculateDiffs(
-                Parser.parse(new File("src/test/resources/file1.json")),
-                Parser.parse(new File("src/test/resources/file2.json"))
+                Parser.parse(reader.read(new File("src/test/resources/file1.json"))),
+                Parser.parse(reader.read(new File("src/test/resources/file2.json")))
         );
 
         assertThat(result).containsAll(diffs);

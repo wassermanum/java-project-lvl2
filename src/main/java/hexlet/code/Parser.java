@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> parse(File filepath) throws IOException {
+    public static Map<String, Object> parse(String data) throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 
-        return mapper.convertValue(mapper.readTree(filepath), new TypeReference<>() {
+//        return mapper.convertValue(mapper.readTree(filepath), new TypeReference<>() {
+//        });
+        return mapper.convertValue(mapper.readTree(data), new TypeReference<>() {
         });
     }
 }

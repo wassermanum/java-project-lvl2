@@ -1,21 +1,30 @@
 package hexlet.code;
 
+import hexlet.code.readers.FileReader;
+import hexlet.code.readers.Reader;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.nio.file.Files;
+import java.util.*;
 
 public class Differ {
 
     public static String generate(File filepath1, File filepath2, Format format) throws IOException {
-        List<Diff> diffs = calculateDiffs(Parser.parse(filepath1), Parser.parse(filepath2));
+        Reader reader = new FileReader();
+        List<Diff> diffs = calculateDiffs(
+                Parser.parse(reader.read(filepath1)),
+                Parser.parse(reader.read(filepath2))
+        );
         return Formatter.format(diffs, format);
     }
 
     public static String generate(File filepath1, File filepath2, String format) throws IOException {
-        List<Diff> diffs = calculateDiffs(Parser.parse(filepath1), Parser.parse(filepath2));
+        Reader reader = new FileReader();
+        List<Diff> diffs = calculateDiffs(
+                Parser.parse(reader.read(filepath1)),
+                Parser.parse(reader.read(filepath2))
+        );
         return Formatter.format(diffs, Format.valueOf(format));
     }
 
@@ -53,6 +62,7 @@ public class Differ {
                 diffs.add(new Diff(key, value, null, Status.DELETED));
             }
         });
+        diffs.sort(Comparator.comparing((Diff a) -> a.key().toLowerCase()));
         return diffs;
     }
 }
