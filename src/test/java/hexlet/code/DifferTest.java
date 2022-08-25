@@ -54,8 +54,7 @@ public class DifferTest {
 
     @AfterAll
     public static void clean() throws IOException {
-        Files.deleteIfExists(Path.of("src/test/resources/expectedStylish1"));
-        Files.deleteIfExists(Path.of("src/test/resources/expectedStylish2"));
+        Files.deleteIfExists(Path.of("src/test/resources/expectedStylish"));
         Files.deleteIfExists(Path.of("src/test/resources/expectedPlain"));
     }
 
