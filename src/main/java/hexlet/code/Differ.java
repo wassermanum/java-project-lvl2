@@ -12,7 +12,7 @@ import static hexlet.code.DifferUtils.calculateDiffs;
 public class Differ {
 
     public static String generate(File filepath1, File filepath2, Format format) throws IOException {
-        Reader reader = new FileReader();
+        Reader<File> reader = new FileReader();
         List<Diff> diffs = calculateDiffs(
                 Parser.parse(reader.read(filepath1)),
                 Parser.parse(reader.read(filepath2))
@@ -21,7 +21,7 @@ public class Differ {
     }
 
     public static String generate(File filepath1, File filepath2, String format) throws IOException {
-        Reader reader = new FileReader();
+        Reader<File> reader = new FileReader();
         List<Diff> diffs = calculateDiffs(
                 Parser.parse(reader.read(filepath1)),
                 Parser.parse(reader.read(filepath2))

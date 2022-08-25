@@ -1,6 +1,6 @@
-man: "Gary"
-women:
-  - "Petty"
-  - "Mary Smith"
-  - "Susan Williams"
-  - "Petty Smith"
+gender: male
+mmr: 9000
+name: OLEG
+yyy: [1, 2, 4]
+xxx: 0
+zzz: Letters

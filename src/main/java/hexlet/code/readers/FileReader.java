@@ -8,6 +8,6 @@ public final class FileReader implements Reader<File> {
 
     @Override
     public String read(File file) throws IOException {
-            return Files.readString(file.toPath());
+        return Files.readString(file.toPath());
     }
 }
